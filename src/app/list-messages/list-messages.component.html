@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title><b>Bandeja de entrada</b></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <!-- Lista de chats activos -->
+  <ion-list *ngIf="chats.length > 0">
+    <ion-item *ngFor="let chat of chats">
+      <ion-avatar slot="start">
+        <img [src]="chat.photoUrl" alt="Foto de perfil" />
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ chat.username || 'Usuario desconocido' }}</h2>
+        <p>{{ chat.lastMessage }}</p>
+      </ion-label>
+
+      <!-- Icono 'send-outline' al final del mensaje -->
+      <span *ngIf="chat.isLastMessageFromUser" slot="end">
+        <ion-icon name="send-outline"></ion-icon>
+      </span>
+
+      <!-- Botón de eliminar chat -->
+      <ion-button color="danger" slot="end" (click)="deleteChat(chat.id)">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <!-- Mensaje si no hay chats -->
+  <ion-card *ngIf="chats.length === 0">
+    <ion-card-header>
+      <ion-card-title>No tienes ningún chat activo.</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+  <!-- Refresher para actualizar al deslizar hacia arriba -->
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pulling-text="Desliza hacia arriba para actualizar"
+      refreshing-spinner="bubbles"
+      refreshing-text="Actualizando..."
+    ></ion-refresher-content>
+  </ion-refresher>
+</ion-content>

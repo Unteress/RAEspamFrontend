@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" icon="{{ backIcon }}"></ion-back-button>
+    </ion-buttons>
+    
+    <ion-avatar *ngIf="friendPhoto" slot="start" class="small-avatar">
+      <img [src]="friendPhoto" alt="Foto de perfil">
+    </ion-avatar>
+    
+    <ion-title>{{ friendName }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="chat-container">
+  <div class="messages-container">
+    <div *ngFor="let msg of messages" 
+         [ngClass]="{'my-message': msg.senderId === currentUserId, 'friend-message': msg.senderId !== currentUserId}">
+      <!-- Contenedor para agrupar el avatar y el mensaje -->
+      <div class="message-wrapper">
+        <!-- Mostrar avatar solo para mensajes del amigo -->
+        <ion-avatar *ngIf="msg.senderId !== currentUserId" class="small-message-avatar">
+          <img [src]="friendPhoto" alt="Foto de perfil">
+        </ion-avatar>
+        <div class="message-bubble">
+          <p class="message-content">{{ msg.content }}</p>
+          <p class="message-date">{{ msg.createdAt | date:'shortTime' }}</p>
+          <!-- Botón para eliminar mensaje solo para los mensajes enviados por el usuario actual -->
+          <ion-button *ngIf="msg.senderId === currentUserId" fill="clear" (click)="deleteMessage(msg.id)">
+            <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-item class="message-input">
+      <ion-input [(ngModel)]="newMessage" placeholder="Escribe tu mensaje..." class="input-box"></ion-input>
+      <ion-button (click)="sendMessage()" class="send-button">
+        <ion-icon name="send"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>

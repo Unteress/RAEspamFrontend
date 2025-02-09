@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="Dark">
+    <ion-title><b>Solicitudes</b></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <!-- Refresher para actualizar al arrastrar hacia abajo -->
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pulling-text="Desliza hacia abajo para actualizar"
+      refreshing-spinner="bubbles"
+      refreshing-text="Actualizando..."
+    ></ion-refresher-content>
+  </ion-refresher>
+
+  <!-- Spinner mientras se cargan los datos -->
+  <ion-spinner *ngIf="isLoading" class="loading-spinner"></ion-spinner>
+
+  <!-- Lista de solicitudes pendientes -->
+  <ion-list *ngIf="!isLoading && pendingRequests.length > 0">
+    <ion-item *ngFor="let request of pendingRequests">
+      <ion-avatar slot="start">
+        <img
+          [src]="request.sender.person.photo ? 'http://localhost:3000' + request.sender.person.photo : '/assets/default-profile.png'"
+          alt="Foto de perfil"
+        />
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ request.sender.user }}</h2>
+        <p>Te ha enviado una solicitud de amistad.</p>
+      </ion-label>
+      <ion-button color="primary" (click)="acceptRequest(request.sender.id)">Aceptar</ion-button>
+      <ion-button color="danger" (click)="rejectRequest(request.sender.id)">Rechazar</ion-button>
+    </ion-item>
+  </ion-list>
+
+  <!-- Mensaje cuando no hay solicitudes -->
+  <ion-card *ngIf="!isLoading && pendingRequests.length === 0">
+    <ion-card-header>
+      <ion-card-title>No tienes solicitudes pendientes.</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+</ion-content>

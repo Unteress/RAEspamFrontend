@@ -1,0 +1,33 @@
+ion-avatar {
+    margin-right: 10px;
+  }
+  
+  ion-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  ion-label p {
+    margin-top: 5px; /* Ajusta este valor para cambiar la distancia */
+    font-size: 14px; /* Ajusta el tamaño de la fuente si es necesario */
+
+  }
+
+  ion-footer {
+    ion-toolbar {
+      background: var(--ion-color-tertiary); /* Color de fondo opcional */
+      color: white; /* Color del texto */
+    }
+  
+    ion-item {
+      --min-height: 56px; /* Ajustar la altura mínima si es necesario */
+      --padding-start: 16px;
+    }
+  
+    ion-icon {
+      font-size: 20px; /* Ajustar tamaño del ícono */
+    }
+  }
+  
+  

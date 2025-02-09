@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <a href="" routerLink="/profile">
+        <ion-icon name="arrow-back-outline" size="large"></ion-icon>
+      </a>
+      <ion-title>Editar Perfil</ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Estos son tus datos</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="container">
+        <!-- Foto de Perfil -->
+        <ion-item style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+          <ion-label position="stacked">Foto de Perfil Actual</ion-label>
+          <ion-avatar class="profile-avatar">
+            <img *ngIf="currentPhoto" [src]="currentPhoto" alt="Foto de Perfil" class="profile-img"/>
+          </ion-avatar>
+          <ion-button expand="full" (click)="selectPhoto()">
+            Editar Foto de Perfil
+          </ion-button>
+        </ion-item>
+
+        <!-- Menú de confirmación -->
+        <ion-item *ngIf="preview" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+          <ion-label position="stacked">Vista Previa</ion-label>
+          <ion-avatar class="preview-avatar">
+            <img [src]="preview" alt="Vista previa" class="preview-img" />
+          </ion-avatar>
+          <ion-button color="success" expand="block" (click)="confirmPhotoUpdate()">
+            Confirmar Actualización
+          </ion-button>
+          <ion-button color="danger" expand="block" (click)="cancelPhotoUpdate()">
+            Cancelar
+          </ion-button>
+        </ion-item>
+
+        <!-- Formulario de actualización de datos -->
+        <ion-item>
+          <ion-input type="text" label="Usuario" labelPlacement="floating" [(ngModel)]="profile.user" [value]="user.user" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" label="Nombres" labelPlacement="floating" [(ngModel)]="profile.person.name" [value]="user.person.name" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" label="Apellidos" labelPlacement="floating" [(ngModel)]="profile.person.lastName" [value]="user.person.lastName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" label="País" labelPlacement="floating" [(ngModel)]="profile.person.adress" [value]="user.person.adress" required></ion-input>
+        </ion-item>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-button expand="full" color="success" (click)="updateProfile()">
+      <span style="font-size: 100%; margin-right: 1%;" size="large">Actualizar Datos</span>
+    </ion-button>
+  </ion-card>
+</ion-content>

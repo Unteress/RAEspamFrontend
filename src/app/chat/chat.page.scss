@@ -1,0 +1,79 @@
+.my-message {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.friend-message {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.message-bubble {
+  max-width: 75%;
+  padding: 10px;
+  border-radius: 15px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.my-message .message-bubble {
+  background-color: #a8dadc;  /* Nuevo color */
+  color: white;
+  border-bottom-right-radius: 0;
+}
+
+.friend-message .message-bubble {
+  background-color: #e5e5ea;
+  color: black;
+  border-bottom-left-radius: 0;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.small-avatar {
+  width: 40px;
+  height: auto;
+}
+
+.message-wrapper {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 8px;
+}
+
+.friend-message .message-wrapper {
+  flex-direction: row;
+}
+
+.my-message .message-wrapper {
+  justify-content: flex-end;
+}
+
+/* Tamaño pequeño para el avatar que aparece al lado de los mensajes del amigo */
+.small-message-avatar {
+  width: 25px;
+  height: auto;
+}
+
+/* Opcional: puedes ajustar estilos para el contenedor del mensaje */
+.message-bubble {
+  background: rgb(0, 0, 0);
+  border-radius: 8px;
+  padding: 8px;
+  max-width: 70%;
+}
+  
+/* Estilos adicionales para mensajes propios */
+.my-message .message-bubble {
+  background: #173ee9;  /* Nuevo color */
+}

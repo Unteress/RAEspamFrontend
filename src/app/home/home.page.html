@@ -1,0 +1,63 @@
+<ion-app>
+  <app-menu ></app-menu> <!-- Utilizar el componente de menú -->
+  <div class="ion-page" id="main-content">
+    <ion-header>
+      <ion-toolbar color="Shade">
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title><b>Red Social</b></ion-title>
+      </ion-toolbar>
+    </ion-header>
+    
+    <ion-content class="ion-padding" color="Primary"> 
+      <ion-tabs >
+        <ion-tab tab="home" >
+          <div id="home-page">
+            <ion-header>
+              <ion-toolbar color="Dark">
+                  <ion-title><b>Bienvenido a tu perfil  {{ user }}</b></ion-title>
+              </ion-toolbar>
+            </ion-header>
+            <ion-content>
+              <div class="example-content">Listen now content</div>
+            </ion-content>
+          </div>
+        </ion-tab>
+        
+        <ion-tab tab="Notifications">
+          <div id="Notifications-page">
+            <app-notifications></app-notifications>
+          </div>
+        </ion-tab>
+
+        <ion-tab tab="messages">
+          <div id="messages-page">
+            <app-list-messages></app-list-messages>
+          </div>
+        </ion-tab>
+        
+        <ion-tab tab="search">
+          <div id="search-page">
+            <app-search></app-search> 
+          </div>
+        </ion-tab>
+
+        <ion-tab-bar slot="bottom" color="medium">
+          <ion-tab-button tab="home">Inicio
+            <ion-icon name="home-outline"></ion-icon>
+          </ion-tab-button>
+          <ion-tab-button tab="Notifications">Solicitudes
+            <ion-icon name="person-add-outline"></ion-icon>
+          </ion-tab-button>
+          <ion-tab-button tab="messages">Mensajes
+            <ion-icon name="chatbox-outline"></ion-icon>
+          </ion-tab-button>
+          <ion-tab-button tab="search">Buscar
+            <ion-icon name="search"></ion-icon>
+          </ion-tab-button>
+        </ion-tab-bar>
+      </ion-tabs>
+    </ion-content>
+  </div>
+</ion-app>

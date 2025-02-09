@@ -1,0 +1,67 @@
+.register-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background: linear-gradient(to bottom, #ffffff, #e5e5e5);
+}
+
+.container {
+  width: 90%;
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  margin-bottom: 20px;
+}
+
+.logo img {
+  width: 100px;
+  height: auto;
+}
+
+.input-field {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+ion-input, ion-select, ion-datetime {
+  --padding-start: 10px;
+  --padding-end: 10px;
+  --placeholder-color: #a8a8a8;
+}
+
+.gender-selection {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.gender-selection .label {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #5a5a5a;
+}
+
+ion-segment {
+  width: 100%;
+}
+
+ion-segment-button {
+  --indicator-color: #0095f6;
+  --color-checked: #0095f6;
+  --color: #6c757d;
+  border: 1px solid #dbdbdb;
+  margin: 2px;
+}
+
+.register-button {
+  width: 100%;
+  background-color: #0095f6;
+  color: white;
+  font-weight: bold;
+  margin-top: 15px;
+}

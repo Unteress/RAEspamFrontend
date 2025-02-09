@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-searchbar (ionInput)="onSearchChange($event)"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-list *ngIf="searchResults.length > 0">
+    <ion-item *ngFor="let user of searchResults" (click)="setOpen(user.id)">
+      <ion-avatar slot="start">
+        <img [src]="user.person.photo ? 'http://localhost:3000' + user.person.photo : '/assets/default-profile.png'" alt="Foto de perfil" />
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ user.user }}</h2>
+        <p>{{ user.person.name }} {{ user.person.lastName }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-label *ngIf="searchResults.length === 0" class="no-results"></ion-label>
+</ion-content>
+
+<ion-action-sheet
+  [isOpen]="isActionSheetOpen"
+  header="Actions"
+  [buttons]="getActionSheetButtons(activeUser)"
+  (didDismiss)="setOpen(null)"
+></ion-action-sheet>

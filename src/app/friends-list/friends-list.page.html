@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <a href="" routerLink="/home">
+        <ion-icon name="arrow-back-outline" size="large"></ion-icon>
+      </a>
+    </ion-buttons>
+    <ion-title>Amigos</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar (ionInput)="onSearchChange($event)" placeholder="Buscar amigos"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pulling-text="Desliza hacia abajo para actualizar"
+      refreshing-spinner="bubbles"
+      refreshing-text="Actualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-spinner *ngIf="isLoading" class="loading-spinner"></ion-spinner>
+
+  <ion-list *ngIf="!isLoading && filteredFriends.length > 0">
+    <ion-item *ngFor="let friend of filteredFriends">
+      <ion-avatar slot="start">
+        <img
+          [src]="friend.photo"
+          alt="Foto de perfil">
+      </ion-avatar>
+
+      <ion-label routerLink="/profile-friends/{{ friend.id }}">
+        <h2>{{ friend.user }}</h2>
+        <p>{{ friend.email }}</p>
+      </ion-label>
+
+      <!-- Botón para ir al chat con el amigo -->
+      
+      <ion-button [routerLink]="['/chat', friend.id]" fill="outline" slot="end">
+        Enviar mensaje  
+      </ion-button>
+      
+      
+      
+      
+    </ion-item>
+  </ion-list>
+
+  <ion-card *ngIf="!isLoading && filteredFriends.length === 0">
+    <ion-card-header>
+      <ion-card-title>No se encontraron amigos.</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+</ion-content>
