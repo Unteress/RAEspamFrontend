@@ -7,38 +7,44 @@
 <ion-content fullscreen>
   <!-- Lista de chats activos -->
   <ion-list *ngIf="chats.length > 0">
-    <ion-item *ngFor="let chat of chats">
+    <ion-item *ngFor="let chat of chats" [routerLink]="['/chat', chat.friendId]">
       <ion-avatar slot="start">
         <img [src]="chat.photoUrl" alt="Foto de perfil" />
       </ion-avatar>
       <ion-label>
-        <h2>{{ chat.username || 'Usuario desconocido' }}</h2>
-        <p>{{ chat.lastMessage }}</p>
+        <h2>{{ chat.username }}</h2>
+        <p>{{ truncateMessage(chat.prefixedLastMessage) }}</p>
       </ion-label>
 
-      <!-- Icono 'send-outline' al final del mensaje -->
-      <span *ngIf="chat.isLastMessageFromUser" slot="end">
-        <ion-icon name="send-outline"></ion-icon>
-      </span>
+    <!-- Botón de opciones -->
+    <ion-button fill="clear" slot="end" (click)="openOptions(chat, $event)">
+      <ion-icon name="ellipsis-vertical"></ion-icon>
+    </ion-button>
+  </ion-item>
+</ion-list>
 
-      <!-- Botón de eliminar chat -->
-      <ion-button color="danger" slot="end" (click)="deleteChat(chat.id)">
-        <ion-icon name="trash-outline"></ion-icon>
-      </ion-button>
-    </ion-item>
-  </ion-list>
+<!-- Action Sheet mejorado -->
+<ion-action-sheet
+  [isOpen]="isActionSheetOpen"
+  [header]="'Opciones'"
+  [buttons]="actionSheetButtons"
+  (didDismiss)="isActionSheetOpen = false">
+</ion-action-sheet>
 
-  <!-- Mensaje si no hay chats -->
+  
+  
+
+  <!-- Tarjeta cuando no hay chats -->
   <ion-card *ngIf="chats.length === 0">
     <ion-card-header>
       <ion-card-title>No tienes ningún chat activo.</ion-card-title>
     </ion-card-header>
   </ion-card>
 
-  <!-- Refresher para actualizar al deslizar hacia arriba -->
+  <!-- Refresher para actualizar -->
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
-      pulling-text="Desliza hacia arriba para actualizar"
+      pulling-text="Desliza hacia abajo para actualizar"
       refreshing-spinner="bubbles"
       refreshing-text="Actualizando..."
     ></ion-refresher-content>

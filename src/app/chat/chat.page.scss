@@ -14,6 +14,7 @@
   border-radius: 15px;
   font-size: 14px;
   line-height: 1.4;
+  position: relative;  /* Para contener el botón en relación con la burbuja */
 }
 
 .my-message .message-bubble {
@@ -49,6 +50,7 @@
   display: flex;
   align-items: flex-end;
   margin-bottom: 8px;
+  position: relative;  /* Para posicionar el botón en relación con la burbuja */
 }
 
 .friend-message .message-wrapper {
@@ -65,15 +67,36 @@
   height: auto;
 }
 
-/* Opcional: puedes ajustar estilos para el contenedor del mensaje */
+/* Estilos adicionales para mensajes propios */
+.my-message .message-bubble {
+  background: #173ee9;  /* Nuevo color */
+}
+
+/* Ajustes para el botón de eliminar, centrado verticalmente */
+.delete-button {
+  position: relative; 
+  left: 2%;  /* Ajusta para que se mantenga al lado izquierdo */
+  background: transparent;
+  padding: 0;
+  z-index: 10;  /* Asegura que el botón esté por encima de la burbuja */
+}
+
+/* Para que el botón se quede dentro de los límites y no se salga de la pantalla */
+.message-wrapper {
+  max-width: 90%;  /* Asegura que los mensajes no se salgan de la pantalla */
+}
+
 .message-bubble {
   background: rgb(0, 0, 0);
   border-radius: 8px;
   padding: 8px;
   max-width: 70%;
 }
-  
-/* Estilos adicionales para mensajes propios */
-.my-message .message-bubble {
-  background: #173ee9;  /* Nuevo color */
+
+/* Aseguramos que el contenedor del mensaje sea flexible */
+.my-message .message-bubble,
+.friend-message .message-bubble {
+  display: inline-block;
+  position: relative;
 }
+
